@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_ssof/themes/themes.dart';
 
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<MyWidget> createState() => _MyWidgetState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyWidgetState extends State<MyWidget> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
