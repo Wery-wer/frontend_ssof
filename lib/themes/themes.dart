@@ -9,7 +9,7 @@ Color alertColor = Color(0xFFF1F0F2);
 Color priceColor = Color(0xFF2C96F1);
 
 Color backgroundColor1 = Color(0xFFFFFFFF);
-Color primaryTextColor = Color(0xFFF1F0F2);
+Color primaryTextColor = Color(0xFF000000);
 Color secondaryTextColor = Color(0xFF000000);
 Color thirdTextColor = Color(0xFFBDBDBD);
 Color transparerntColor = Colors.transparent;
@@ -35,4 +35,4 @@ FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
 FontWeight semiBold = FontWeight.w600;
-FontWeight bold = FontWeight.w700;
+FontWeight bold = FontWeight.w900;
