@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_ssof/views/booking_page.dart';
+import 'package:frontend_ssof/views/homepage.dart';
 import 'package:frontend_ssof/views/login_page.dart';
 
 void main() {
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const BookingPage(),
+      home: const Homepage(),
     );
   }
 }
@@ -126,9 +127,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-
-
-
-
-
