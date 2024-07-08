@@ -6,11 +6,11 @@ double defaultMargin = 30.0;
 Color primaryColor = Color(0xFF000000);
 Color secondaryColor = Color(0xFFCF3838);
 Color alertColor = Color(0xFFF1F0F2);
-Color priceColor = Color(0xFF2C96F1);
+Color buttonColor = Color(0xFF68F06D);
 
 Color backgroundColor1 = Color(0xFFFFFFFF);
 Color primaryTextColor = Color(0xFF000000);
-Color secondaryTextColor = Color(0xFF000000);
+Color secondaryTextColor = Color(0xFFFFFFFF);
 Color thirdTextColor = Color(0xFFBDBDBD);
 Color transparerntColor = Colors.transparent;
 Color blackColor = Color(0xFF2E2E2E);
@@ -29,6 +29,14 @@ TextStyle blexackTtStyle = GoogleFonts.poppins(
 
 TextStyle thirdTextStyle = GoogleFonts.poppins(
   color: thirdTextColor,
+);
+
+TextStyle fourthTextStyle = GoogleFonts.poppins(
+  color: secondaryColor
+);
+
+TextStyle buttonTextStyle = GoogleFonts.poppins(
+  color: buttonColor
 );
 
 FontWeight light = FontWeight.w300;

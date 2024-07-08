@@ -11,25 +11,59 @@ class mybookingpage extends StatefulWidget {
 
 class _mybookingpageState extends State<mybookingpage> {
 
+  final List<String> times = [
+    "08:00",
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+  ];
+
+  final Set<String> selectedTimes = {};
+
   @override
   Widget build(BuildContext context) {
 
+    Widget arrowback(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+      onPressed: (){
+        
+      },
+    );
+  }
+
     Widget header() {
       return Container(
-        width: 189,
-        height: 60,
-        margin: EdgeInsets.only(top:28,left: 85),
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage('assets/LogoMrbos.png')
-          )
-        ),
-      );
-    }
+      margin: EdgeInsets.only(top: 10, left: 75), // Adjust margin as needed
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 189,
+            height: 60,
+            margin: EdgeInsets.only(left: 20), // Adjust margin as needed
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage('assets/LogoMrbos.png'),
+                fit: BoxFit.contain, // Adjust fit as needed
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
     Widget tanggal(){
       return Container(
-        margin: EdgeInsets.only(top: 70, left: 28),
+        margin: EdgeInsets.only(top: 40, left: 28),
         child: Row(
           children: [
             Column(
@@ -37,15 +71,16 @@ class _mybookingpageState extends State<mybookingpage> {
               children: [
                 Text(
                   'Tanggal',
-                  style: GoogleFonts.poppins(
+                  style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: 20
+                    fontSize: 15
                   ),
                 ),
                 SizedBox(height: 12),
                 Text(
                   '7 Juni 2024',
                   style: thirdTextStyle.copyWith(
+                    fontSize: 12,
                     fontWeight: regular
                   ),
                 ),
@@ -66,15 +101,16 @@ class _mybookingpageState extends State<mybookingpage> {
               children: [
                 Text(
                   'Ruangan',
-                  style: GoogleFonts.poppins(
+                  style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: 20
+                    fontSize: 15
                   ),
                 ),
                 SizedBox(height: 12),
                 Text(
                   'Talaga Bodas',
                   style: thirdTextStyle.copyWith(
+                    fontSize: 12,
                     fontWeight: regular
                   ),
                 ),
@@ -85,38 +121,77 @@ class _mybookingpageState extends State<mybookingpage> {
       );
     }
 
-    Widget waktu(){
-      return Container(
-        margin: EdgeInsets.only(top: 21, left: 28),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Waktu',
-                  style: GoogleFonts.poppins(
-                    fontWeight: bold,
-                    fontSize: 20
-                  ),
-                ),
-                SizedBox(height: 12),
-                Text(
-                  'Talaga Bodas',
-                  style: thirdTextStyle.copyWith(
-                    fontWeight: regular
-                  ),
-                ),
-              ],
+    Widget waktu() {
+    return Container(
+      margin: EdgeInsets.only(top: 21, left: 28),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Waktu',
+            style: primaryTextStyle.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
             ),
-          ],
-        ),
-      );
-    }
+          ),
+          SizedBox(height: 12),
+          Container(
+            // padding: EdgeInsets.symmetric(horizontal: 10),
+            margin: EdgeInsets.only(right: 30),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 5,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 2.5,
+              ),
+              itemCount: times.length,
+              itemBuilder: (context, index) {
+                final time = times[index];
+                final isSelected = selectedTimes.contains(time);
+
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      if (isSelected) {
+                        selectedTimes.remove(time);
+                      } else {
+                        selectedTimes.add(time);
+                      }
+                    });
+                  },
+                  child: SizedBox(
+                    width: 36,
+                    height: 20,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: isSelected ? buttonColor : Color(0xFFD9D9D9),
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                      child: Text(
+                        time,
+                        style: TextStyle(
+                          color: isSelected ? Colors.white : Colors.black,
+                          fontWeight: regular,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
     Widget agenda(){
       return Container(
-        margin: EdgeInsets.only(top: 21, left: 28),
+        margin: EdgeInsets.only(top: 30, left: 28),
         child: Row(
           children: [
             Column(
@@ -124,15 +199,16 @@ class _mybookingpageState extends State<mybookingpage> {
               children: [
                 Text(
                   'Agenda',
-                  style: GoogleFonts.poppins(
+                  style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: 20
+                    fontSize: 15
                   ),
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'Talaga Bodas',
+                  'Uji Coba Apps Mr.Bos',
                   style: thirdTextStyle.copyWith(
+                    fontSize: 12,
                     fontWeight: regular
                   ),
                 ),
@@ -153,16 +229,17 @@ class _mybookingpageState extends State<mybookingpage> {
               children: [
                 Text(
                   'Status',
-                  style: GoogleFonts.poppins(
+                  style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: 20
+                    fontSize: 15
                   ),
                 ),
                 SizedBox(height: 12),
                 Text(
-                  'Talaga Bodas',
+                  'Waiting Approval',
                   style: thirdTextStyle.copyWith(
-                    fontWeight: regular
+                    fontWeight: regular,
+                    fontSize: 12,
                   ),
                 ),
               ],
@@ -175,24 +252,56 @@ class _mybookingpageState extends State<mybookingpage> {
     Widget action(){
       return Container(
         margin: EdgeInsets.only(top: 21, left: 28),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Text(
+              'Action',
+              style: primaryTextStyle.copyWith(
+                fontWeight: bold,
+                fontSize: 15
+              ),
+            ),
+            Row(
               children: [
-                Text(
-                  'Action',
-                  style: GoogleFonts.poppins(
-                    fontWeight: bold,
-                    fontSize: 20
+                ElevatedButton(
+                  onPressed: (){
+            
+                  }, 
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: buttonColor, // Warna background
+                    foregroundColor: primaryColor, // Warna teks
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6), 
+                    ),
                   ),
+                  child: Text(
+                    'Edit Data',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 12
+                    ),  
+                  )
                 ),
-                SizedBox(height: 12),
-                Text(
-                  'Talaga Bodas',
-                  style: thirdTextStyle.copyWith(
-                    fontWeight: regular
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: (){
+            
+                  }, 
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: secondaryColor, // Warna background
+                    foregroundColor: primaryColor, // Warna teks
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6), 
+                    ),
                   ),
+                  child: Text(
+                    'Batalkan',
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 12
+                    ),  
+                  )
                 ),
               ],
             ),
@@ -209,6 +318,7 @@ class _mybookingpageState extends State<mybookingpage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              arrowback(context),
               header(),
               tanggal(),
               ruangan(),
